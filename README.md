@@ -8,26 +8,27 @@
 
 > Another possible use case is doing production sanity testing. So, after the code update in the production server, the application in the prod server should look exactly the same and work exactly the same way as dev or test environment.
 
-> Doing visual regression manually, we might be able to catch very blatant differences, but it's really difficult for us to catch subtle differences and performing testing repeatedly. That's why a tool like BackstopJS helps us automatically highlight the differences between the two screenshots that will make our jobs a little easier.
+> While doing visual regression manually, we might be able to catch very blatant differences, but it's really difficult for us to catch subtle differences and also performing testing repeatedly. That's where a tool like [BackstopJS](https://github.com/garris/BackstopJS) helps us to automatically highlight the differences between the two screenshots that will make our testing a much easier.
 
 # Contents
-* [BackstopJs](#BackstopJs)
+* [BackstopJS](#BackstopJs)
 * [Backstop Features](#bsfeatures)
 * [BackstopJS workflow](#bsflow)
 * [Installation](#install)
   * [BackstopJS Installation](#bsinstall)
 * [BackstopJS project structure](#structure)
 * [Creating a visual regression test](#test)
-  * [1.Navigate to your local project](#navi)
-  * [2.Initialize Backstop](#init)
-  * [3.Edit backstop.json](#edit)
-  * [4.Create new reference screenshots](#bsref)
-  * [5.Run tests](#bstest)
+  * [1. Navigate to your local project](#navi)
+  * [2. Initialize Backstop](#init)
+  * [3. Edit backstop.json](#edit)
+  * [4. Create new reference screenshots](#bsref)
+  * [5. Run tests](#bstest)
+  * [6. Backstop approve](#bsapprove)
 
 
 ## BackstopJS<a name="BackstopJs"></a>
 
-BackstopJs is a framework that automates visual regression testing, written in javascript. It uses a headless Chrome, in that way it's not actually opening up our Chrome browser and it's not taking screenshots that we can see. We have to write a script for simulating user scenarios and run backstopJS commands and it goes through and simulates user flows with headless chrome automatically. All we have to do is, run a simple command in the command-line tool so that it will take care of all the work for us.
+[BackstopJS](https://github.com/garris/BackstopJS) is a framework that automates visual regression testing, written in javascript. It uses a headless Chrome, in that way it's not actually opening up our Chrome browser and it's not taking screenshots that we can see. We have to write a script for simulating user scenarios and run backstopJS commands and it goes through and simulates user flows with headless chrome automatically. All we have to do is, run a simple command in the command-line tool so that it will take care of all the work for us.
 
 
 ## Backstop Features<a name="bsfeatures"></a>
