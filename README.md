@@ -40,7 +40,7 @@ BackstopJs is a framework that automates visual regression testing, written in j
 
 ## BackstopJS workflow<a name="bsflow"></a>
 
-Add png here
+![alt text](https://github.com/abu-sithik/backstopJS-visual-regression-testing-automation/blob/master/img/BackstopJS_Workflow.png?raw=true)
 
 
 ## BackstopJS Installation<a name="install"></a>
@@ -200,9 +200,9 @@ for more details refer this [doc](https://github.com/garris/BackstopJS#using-bac
 
 # Creating a visual regression test<a name="test"></a>
 
-> Now, let's get started with the simple user flow – Creating a test for the following flow
+> Now, let's get started with the simple user flow: 
 
-Land on page 1 -> login and click a link -> go to page 2, do something and click a link -> go to page 3
+Land on page 1 -> do some action (click a link/button) -> go to page 2
 
 ## Scenarios:
 - Scenario 1: land on page 1, BackstopJS takes screenshot for page 1
@@ -344,13 +344,17 @@ In this demo project other than `viewports` & `scenarios`, we don't really have 
 
 After saving the `backstop.json` file, switch back to command line, and start with a executing Backstop reference command `backstop reference`.
 
-This command is gonna generate the initial reference screenshots. It will generate screenshots for the different view ports for the given scenarios, and then once that's done, we can see the generated screenshot images in `workingDir > backstop_data > bitmaps_reference`. If there's any failure, we could see the errors in command-line window. Modify the `backstop.json` & rerun the reference command until getting a successful run.
+This command is gonna generate the initial reference screenshots. It will generate screenshots for the different view ports for the given scenarios, and then once that's done, we can see the generated screenshot images in `workingDir > backstop_data > bitmaps_reference`. 
+
+![alt text](https://github.com/abu-sithik/backstopJS-visual-regression-testing-automation/blob/master/img/folderLocation.png?raw=true)
+
+If there's any failure, we could see the errors in command-line window. Modify the `backstop.json` & rerun the reference command until getting a successful run.
 
 #### 5. Run tests: `backstop test`<a name="bstest"></a>
 
 Once the reference images are generated successfully, we have to run this command `backstop test` in command-line. Now backstopJS will generate screenshots of test application first and after that it will generate a report, by comparing them(reference vs test).
 
-add gif here
+![alt text](https://github.com/abu-sithik/backstopJS-visual-regression-testing-automation/blob/master/img/backstopReport.gif?raw=true)
 
 Lets just go through the report, 
  - We can take a look at the reference and see the screenshot and kind of see what it looks like.
