@@ -1,0 +1,50 @@
+{
+  "id": "sample_project",
+  "viewports": [
+    {
+      "label": "Desktop Chrome",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "label": "Mobile Chrome",
+      "width": 375,
+      "height": 812
+    }
+  ],
+  "onBeforeScript": "puppet/onBefore.js",
+  "onReadyScript": "puppet/onReady.js",
+  "scenarios": [
+    {
+      "label": "walmartProductPage",
+      "url": "https://www.walmart.com/ip/Super-Mario-Odyssey-Nintendo-Switch/56011600",
+      "referenceUrl": "https://www.walmart.com/ip/Super-Mario-Odyssey-Nintendo-Switch/56011600",
+      "delay": 5000
+    },
+    {
+      "label": "walmartCartPage",
+      "url": "https://www.walmart.com/ip/Super-Mario-Odyssey-Nintendo-Switch/56011600",
+      "referenceUrl": "https://www.walmart.com/ip/Super-Mario-Odyssey-Nintendo-Switch/56011600",
+      "readySelector": "button.prod-ProductCTA--primary",
+      "clickSelector": "button.prod-ProductCTA--primary",
+      "delay": 5000
+    }
+  ],
+  "paths": {
+    "bitmaps_reference": "backstop_data/bitmaps_reference",
+    "bitmaps_test": "backstop_data/bitmaps_test",
+    "engine_scripts": "backstop_data/engine_scripts",
+    "html_report": "backstop_data/html_report",
+    "json_report": "backstop_data/json_report",
+    "ci_report": "backstop_data/ci_report"
+  },
+  "report": ["browser"],
+  "engine": "puppeteer",
+  "engineOptions": {
+    "args": ["--no-sandbox"]
+  },
+  "asyncCaptureLimit": 5,
+  "asyncCompareLimit": 50,
+  "debug": false,
+  "debugWindow": false
+}

@@ -1,0 +1,47 @@
+[
+  {
+    "name": "__cfduid",
+    "value": "d0053b666ae486cfd766fc3dfe089bc401591352779",
+    "domain": ".zoomrx.com",
+    "path": "/",
+    "expires": 1593944779.698833,
+    "size": 51,
+    "httpOnly": true,
+    "secure": false,
+    "session": false,
+    "sameSite": "Lax"
+  },
+  {
+    "name": "user_locale",
+    "value": "Q2FrZQ%3D%3D.ZjUyMGYzYjNiYTYxM2VmNGE3MzNmODE1NGM3MTE0ZmVkMmQ5YmNjYTZhOWM2MDk1NDQyZDc0ZjEzMTZhNDA4MaVGJyS1P47XHnecPNpHWix9QhsKMDwcB1PAHrFzo0wi",
+    "domain": "zeus-zrx.zoomrx.com",
+    "path": "/ppu/z-plus-server/",
+    "expires": 1593944788.216206,
+    "size": 152,
+    "httpOnly": false,
+    "secure": false,
+    "session": false
+  },
+  {
+    "name": "zrx_token",
+    "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0aWQiOjQxMzkyLCJpYXQiOjE1OTEzNTI3ODcsImp0aSI6Im1QY0Z0dFpUUXg1U1UxS2pLaGxhaVJSMDA4cE1acVE1ZlFKbGRIR2FLM3M9IiwiaXNzIjoiaHR0cHM6XC9cL3pldXMtenJ4Lnpvb21yeC5jb20iLCJleHAiOjE2MjI4ODg3ODcsInN1YiI6MTkzMjg0LCJ0eXBlIjoibG9naW4iLCJkYXRhIjpudWxsfQ.jyQdBynB3g4LV7BwWz88u1H5TECSvNtCplcjsa7AoiE",
+    "domain": "zeus-zrx.zoomrx.com",
+    "path": "/ppu/z-plus-server/",
+    "expires": 1622888787.685325,
+    "size": 328,
+    "httpOnly": true,
+    "secure": false,
+    "session": false
+  },
+  {
+    "name": "ZOOMRX",
+    "value": "ej8isj928i3pu6cjjo2peqiuie",
+    "domain": "zeus-zrx.zoomrx.com",
+    "path": "/ppu/z-plus-server/",
+    "expires": -1,
+    "size": 32,
+    "httpOnly": true,
+    "secure": true,
+    "session": true
+  }
+]
