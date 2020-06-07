@@ -14,6 +14,7 @@
 * [BackstopJS](#BackstopJs)
 * [Backstop Features](#bsfeatures)
 * [BackstopJS workflow](#bsflow)
+* [BackstopJS Benefits](#bsbenefits)
 * [Installation](#install)
   * [BackstopJS Installation](#bsinstall)
 * [BackstopJS project structure](#structure)
@@ -43,6 +44,12 @@
 
 ![alt text](https://github.com/abu-sithik/backstopJS-visual-regression-testing-automation/blob/master/img/BackstopJS_Workflow.png?raw=true)
 
+## BackstopJS Benefits<a name="bsbenefits"></a>
+- "Reference (production env) vs Test (test/staging env)" Comparison
+- Multiple viewports support (desktop browsers, mobile browsers,..etc.)
+- Easy way to write UI tests (supports pupeteer scripts)
+- Inbuilt interactive and detailed reports
+- Easily way to scan our web application (backstop-crawl)
 
 ## BackstopJS Installation<a name="install"></a>
 
@@ -219,13 +226,14 @@ Land on page 1 -> do some action (click a link/button) -> go to page 2
  - Run tests: backstop test
 
 ### 1. Navigate to your local project<a name="navi"></a>
-
+After installing BackstopJS, create (or) navigate to project folder,
 ```
 mkdir ./sample_visualTestingProject
 cd ./sample_visualTestingProject
 ```
 
 ### 2. Initialize Backstop<a name="init"></a>
+Intialize backstop setup by running the following command. This command will generate a new backstop config file `backstop.json` and a folder `backstop_data`. This is just an one time command, if backstop files are already there, we need not to run this command again.
 ```
 backstop init
 ```
@@ -364,3 +372,5 @@ Lets just go through the report,
 
  #### 6. Backstop approve: `backstop approve`<a name="bsapprove"></a>
  If the test we ran looks good, then go ahead and approve it. Approving changes will update your reference files with the results from your last test. Future tests are compared against your most recent approved test screenshots.
+ 
+> What we are trying to kind of learn here is that we can run BackstopJS on our computer in a pretty easy & quick way to automate our most of manual visual regression tests. In this demo project, we have explored the very simple test scenario to understand the BackstopJS. In real time scenarios, we might have to use puppeteer JS scripts to handle a complicated scenarios.
