@@ -2,7 +2,7 @@
 
 ### What is Visual Regression Testing?
 
-> In a definition from more famous Wikipedia, Regression testing is re-running functional and non-functional tests to ensure that previously developed and tested software still performs after a change. As we're looking about visual regression testing, we're trying to run a test to verify the application is visually has no difference from its former or less developed state. So in visual regression testing, most of the time we're not going to test some sort of functionality that we've built. 
+> In a definition from more famous Wikipedia, Regression testing is re-running functional and non-functional tests to ensure that previously developed and tested software still performs after a change. In **Visual Regression Testing**, we're trying to run a test to verify the application is visually has no difference from its former or less developed state. So in visual regression testing, most of the time we're not going to test some sort of functionality that we've built.  
 
 > Typically, the main use-case comes in a few different ways. One of them is just doing updates. When an application is getting an update(like upgrading internal libraries or security updates), we usually don't expect anything to be visually different. So, after an update application should look exactly the same and work exactly the same way before and after the update. So in visual regression testing, we make sure that everything is working fine before the update goes live.
 
@@ -34,8 +34,8 @@
 
 ## Backstop Features<a name="bsfeatures"></a>
 
- - Render with headless chrome
- - Simulate user interactions with simple JS / Puppeteer scripts
+ - Renders with headless chrome
+ - Simulates user interactions with simple JS / Puppeteer scripts
  - Browser reports with visual diffs, CLI reports, and JUnit reports
  - Easy to integrate with CI(Jenkins) and source control
  - Very easy to use, just 3 commands to do everything.
