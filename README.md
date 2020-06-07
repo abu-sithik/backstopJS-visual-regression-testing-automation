@@ -224,6 +224,7 @@ Land on page 1 -> do some action (click a link/button) -> go to page 2
    - Add `scenarios`
  - Create new reference screenshots: backstop reference
  - Run tests: backstop test
+ - Approve tests: backstop approve
 
 ### 1. Navigate to your local project<a name="navi"></a>
 After installing BackstopJS, create (or) navigate to project folder,
