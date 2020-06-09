@@ -2,11 +2,11 @@
 
 ### What is Visual Regression Testing?
 
-> In a definition from more famous Wikipedia, Regression testing is re-running functional and non-functional tests to ensure that previously developed and tested software still performs after a change. In **Visual Regression Testing**, we're trying to run a test to verify the application is visually has no difference from its former or less developed state. So in visual regression testing, most of the time we're not going to test some sort of functionality that we've built.  
+> In a definition from more famous Wikipedia, Regression testing is re-running functional and non-functional tests to ensure that previously developed and tested software still performs after a change. In **Visual Regression Testing**, we're trying to run a test to verify the application has no visual difference from its former or less developed state. So in visual regression testing(VRT), most of the time we're not going to test some sort of functionality that we've built. 
 
-> Typically, the main use-case comes in a few different ways. One of them is just doing updates. When an application is getting an update(like upgrading internal libraries or security updates), we usually don't expect anything to be visually different. So, after an update application should look exactly the same and work exactly the same way before and after the update. So in visual regression testing, we make sure that everything is working fine before the update goes live.
+> Typically, the main use-case of VRT comes in a few different ways. One of them is just doing updates for web app. When an application is getting an update(like upgrading internal libraries or security updates), we usually don't expect anything to be visually different. So, after an update application should look exactly the same and work exactly the same way before and after the update. So in VRT, we make sure that everything is working fine before the code goes live.
 
-> Another possible use case is doing production sanity testing. So, after the code update in the production server, the application in the prod server should look exactly the same and work exactly the same way as dev or test environment.
+> Another possible use case is doing production/live sanity testing. So, after the prod server code update, the application in the prod server should look exactly the same and work exactly the same way as dev or test environment.
 
 > While doing visual regression manually, we might be able to catch very blatant differences, but it's really difficult for us to catch subtle differences and also performing testing repeatedly. That's where a tool like [BackstopJS](https://github.com/garris/BackstopJS) helps us to automatically highlight the differences between the two screenshots that will make our testing a much easier.
 
@@ -22,6 +22,9 @@
   * [1. Navigate to your local project](#navi)
   * [2. Initialize Backstop](#init)
   * [3. Edit backstop.json](#edit)
+    * [Add viewports](#1)
+    * [Add scenarios](#2)
+    * [How to handle cookies / sessions in backstopJS](#cookies)
   * [4. Create new reference screenshots](#bsref)
   * [5. Run tests](#bstest)
   * [6. Backstop approve](#bsapprove)
@@ -29,8 +32,7 @@
 
 ## BackstopJS<a name="BackstopJs"></a>
 
-[BackstopJS](https://github.com/garris/BackstopJS) is a framework that automates visual regression testing, written in javascript. It uses a headless Chrome, in that way it's not actually opening up our Chrome browser and it's not taking screenshots that we can see. We have to write a script for simulating user scenarios and run backstopJS commands and it goes through and simulates user flows with headless chrome automatically. All we have to do is, run a simple command in the command-line tool so that it will take care of all the work for us.
-
+[BackstopJS](https://github.com/garris/BackstopJS) is a framework that automates visual regression testing. This framework is written in JS and consists of the following tools:Puppeteer(headless chrome)+ ResembleJS(diff library). It uses a headless Chrome, in that way it's not actually opening up our Chrome browser and it's not taking screenshots that we can see. All we have to do is, write a script for simulating user scenarios and run backstopJS commands and it goes through and simulates user flows with headless chrome automatically. All we have to do is, run a simple command in the command-line tool so that it will take care of all the work for us.
 
 ## Backstop Features<a name="bsfeatures"></a>
 
@@ -47,7 +49,7 @@
 ## BackstopJS Benefits<a name="bsbenefits"></a>
 - "Reference (production env) vs Test (test/staging env)" Comparison
 - Multiple viewports support (desktop browsers, mobile browsers,..etc.)
-- Easy way to write UI tests (supports pupeteer scripts)
+- Easy way to write UI tests (supports puppeteer scripts)
 - Inbuilt interactive and detailed reports
 - Easily way to scan our web application (backstop-crawl)
 
@@ -349,6 +351,57 @@ Final `backstop.json` file should look like this for the given scenario,
 ```
 
 In this demo project other than `viewports` & `scenarios`, we don't really have to change anything else. Based on the requirement,  We can change the all the other variables if needed. For more details about `backstop.json` properties, refer this [doc](https://github.com/garris/BackstopJS#using-backstopjs).
+
+
+###### How to handle cookies / sessions in backstopJS<a name="cookies"></a>
+
+In some scenarios, we might are try to access urls without repeating any login actions. When an application url has a cookie dependencies, backstopJS provides us a way to import cookies through json files. In such scenarios, we have to add the following backstop property in `backstop.json` file
+
+```"cookiePath": "backstop_data/engine_scripts/cookies.json"```
+
+
+In backstopJS, it is possible to first run a Puppeteer script that logins into application portal, then save the session cookies in a file. Now a subsequent scenarios can read those json file to load  cookies and proceeds to do some action - all without having to log in again.
+
+To run a custom script, add this step `"onReadyScript": "puppet/getCookies.js"` in `backstop.json` file to execute custom puppeteer script to handle cookies/session dynamically. You can find all custom puppeteer scripts in this location `workingdir > backstop_data > engine_scripts > puppet`.
+
+> The following `getCookies.js` script, grabs cookies by logging into the app and stores the cookies in mentioned `cookiePath` location.
+
+```
+const fs = require('fs');
+const  cookiePath = "backstop_data/engine_scripts/cookies.json";
+
+module.exports = async (page, scenario, vp) => {
+  
+    console.log('SCENARIO > ' + scenario.label);
+
+    console.log("Closing cookie consent");
+    await page.waitForSelector('button.form__button.form__button--green.cookie-button');
+    await page.click('button.form__button.form__button--green.cookie-button');
+
+   // Waits until the `email & password` meta element is rendered
+    await page.waitForSelector('input[name="email"]');
+    await page.waitForSelector('input[name="password"]');
+  
+    await page.type('input[name="email"]', 'userEmail@email.com',{delay: 5});
+    await page.type('input[name="password"]', 'Test1234!',{delay: 5});
+
+    console.log("Clicking Submit");
+    await page.waitForSelector('button[type='login']');
+    await page.click('button[type='login']');
+    
+    await page.waitForNavigation();
+
+    const cookies = await page.cookies();
+
+    console.log("The cookie is:", cookies);
+    
+    fs.writeFile(cookiePath, JSON.stringify(cookies, null, 2), function(err) {
+        if (err) throw err;
+        console.log('completed write of cookies');
+    });
+};
+```
+
 
 #### 4. Create reference screenshots: `backstop reference`<a name="bsref"></a>
 
